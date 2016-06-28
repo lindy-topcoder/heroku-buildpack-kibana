@@ -1,18 +1,12 @@
 # Heroku Buildpack for Kibana
 
-This buildpack downloads and installs Kibana into a Heroku app slug. It is a fork of [issueapp/heroku-buildpack-kibana](https://github.com/issueapp/heroku-buildpack-kibana), with some light customization for use as a one-click Heroku Button app.
-
-For a one-click deploy of Kibana on Heroku, see [omc/heroku-kibana](https://github.com/omc/heroku-kibana).
+This buildpack downloads and installs Kibana into a Heroku app slug.
 
 ## Compatibility
 
-Tested against Kibana 4.1.2.
+Tested against Kibana 5.
 
 ## Usage
-
-See our other repo at https://github.com/omc/heroku-kibana for a one-click deploy of Kibana on Heroku.
-
-Or, to use as a standalone buildpack:
 
     # Create a new project with the --buildpack option
     $ heroku create --buildpack https://github.com/omc/heroku-buildpack-kibana
