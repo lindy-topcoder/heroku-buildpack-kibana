@@ -47,7 +47,7 @@ extract="$tar -C $BUILD_DIR --wildcards -f"
 verify="sha1sum --check --warn"
 configure_es_url='sed -i s/^#\(elasticsearch.url:\x20\).\{1,\}/\1"'$(echo $ELASTICSEARCH_URL | sed 's/\//\\\//g')'"/'
 configure_kb_idx='sed -i s/^\(kibana.index:\x20\).\{1,\}/\1"'$(echo $KIBANA_INDEX | sed 's/\//\\\//g')'"/'
-
+configure_es_host='sed -i s/^#\(server.host:\x20\).\{1,\}/\1"0.0.0.0"/'
 
 echo "-----> Installing Kibana..."
 
@@ -73,9 +73,11 @@ $extract $CACHE_DIR/$KIBANA_PACKAGE
 
 echo "-----> Configuring ELASTICSEARCH_URL"
 $configure_es_url $KIBANA_DIR/config/kibana.yml
+$configure_es_host $KIBANA_DIR/config/kibana.yml
 
 echo "-----> Configuring KIBANA_INDEX"
 $configure_kb_idx $KIBANA_DIR/config/kibana.yml
+
 
 echo "Exporting PATH" | indent
 echo 'export PATH="$PATH:'${KIBANA_DIR##*/}'/bin"' > $INIT_SCRIPT
